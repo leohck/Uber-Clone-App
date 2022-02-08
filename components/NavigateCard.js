@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {Text, View, SafeAreaView, StyleSheet, TouchableWithoutFeedback, Keyboard, TouchableOpacity} from 'react-native';
 import {GooglePlacesAutocomplete} from "react-native-google-places-autocomplete";
 import {GOOGLE_MAPS_API_KEY} from "@env";
 import tw from "twrnc";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setDestination} from "../slices/navSlice";
 import {useNavigation} from "@react-navigation/native";
 import NavFavourites from "./NavFavourites";
@@ -13,6 +13,12 @@ import {Icon} from "react-native-elements";
 const NavigateCard = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
+    const destination = useSelector(setDestination);
+
+    useEffect(() => {
+        if (!destination) return;
+        navigation.navigate('RideOptionsCard');
+    }, [destination]);
 
     return (
         <SafeAreaView style={tw`flex-1 bg-white`}>
@@ -48,7 +54,7 @@ const NavigateCard = () => {
                                 }}
                             />
                         </View>
-                        <NavFavourites/>
+                        <NavFavourites mode={"destination"}/>
                     </View>
 
                     <View style={tw`flex-row justify-evenly mt-auto mb-auto pt-2 border-t border-gray-100`}>
