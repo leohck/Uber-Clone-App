@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Text, View, SafeAreaView, StyleSheet, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {Text, View, SafeAreaView, StyleSheet, TouchableWithoutFeedback, Keyboard, TouchableOpacity} from 'react-native';
 import {GooglePlacesAutocomplete} from "react-native-google-places-autocomplete";
 import {GOOGLE_MAPS_API_KEY} from "@env";
 import tw from "twrnc";
@@ -8,6 +8,7 @@ import {useDispatch} from "react-redux";
 import {setDestination} from "../slices/navSlice";
 import {useNavigation} from "@react-navigation/native";
 import NavFavourites from "./NavFavourites";
+import {Icon} from "react-native-elements";
 
 const NavigateCard = () => {
     const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const NavigateCard = () => {
                     <Text style={tw`text-center py-5 text-xl`}>
                         Hello, Leonardo
                     </Text>
+                    <View style={[tw`bg-gray-200`, {height: 1}]}/>
                     <View>
                         <View>
                             <GooglePlacesAutocomplete
@@ -47,6 +49,21 @@ const NavigateCard = () => {
                             />
                         </View>
                         <NavFavourites/>
+                    </View>
+
+                    <View style={tw`flex-row justify-evenly mt-auto mb-auto pt-2 border-t border-gray-100`}>
+                        <TouchableOpacity
+                            style={tw`flex-row justify-between bg-black w-24 px-4 py-3 rounded-full`}
+                            onPress={() => {navigation.navigate('RideOptionsCard')}}
+                        >
+                            <Icon name={'car'} type={'font-awesome'} color={'white'} size={16}/>
+                            <Text style={tw`text-white text-center`}>Rides</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={tw`flex-row justify-between bg-white w-24 px-4 py-3 rounded-full`}>
+                            <Icon name={'fast-food-outline'} type={'ionicon'} color={'black'} size={16}/>
+                            <Text style={tw`text-center`}>Eats</Text>
+                        </TouchableOpacity>
                     </View>
                 </>
             </TouchableWithoutFeedback>
