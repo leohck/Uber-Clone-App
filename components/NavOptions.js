@@ -38,7 +38,7 @@ const NavOptions = () => {
                     onPress={() => navigation.navigate(item.screen)}
                     disabled={!origin}
                 >
-                    <View style={tw`${!origin && 'opacity-20'}`}>
+                    <View style={tw`${!origin && 'opacity-20'} self-center`}>
                         <Image
                             style={{
                                 width: 120,
@@ -49,9 +49,9 @@ const NavOptions = () => {
                                 uri: item.image
                             }}
                         />
-                        <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
+                        <Text style={tw`mt-2 text-lg font-semibold text-center`}>{item.title}</Text>
                         <Icon
-                            style={tw`p-2 bg-black rounded-full w-10 mt-4`}
+                            style={tw`p-2 bg-black rounded-full w-10 mt-4 self-center`}
                             type='antdesign'
                             name='arrowright'
                             color='white'
